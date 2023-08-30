@@ -1,0 +1,69 @@
+openapi: 3.0.1
+info:
+  title: aums
+  version: v2
+servers:
+  - url: https://qa-api.aums.nexon.com/
+  - url: https://api.aums.nexon.com/
+  
+paths:
+  /mail/v2/calendar:
+    post:
+      tags:
+        - Calendar2Controller
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CalendarEventDto'
+        required: true
+      responses:
+        '200':
+          description: Success
+components:
+  schemas:
+    CalendarEventDto:
+      type: object
+      properties:
+        startTimeUtc:
+          type: string
+          format: date-time
+        endTimeUtc:
+          type: string
+          format: date-time
+        uid:
+          type: string
+          nullable: true
+        location:
+          type: string
+          nullable: true
+        attendees:
+          type: array
+          items:
+            type: string
+          nullable: true
+        summary:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        organizer:
+          type: string
+          nullable: true
+        isAllDay:
+          type: boolean
+        repeat:
+          type: string
+          nullable: true
+        untilDateUtc:
+          type: string
+          format: date-time
+        method:
+          type: string
+          nullable: true
+        exDateUtc:
+          type: string
+          format: date-time
+          nullable: true
+      additionalProperties: false
